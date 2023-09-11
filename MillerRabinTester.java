@@ -175,126 +175,20 @@ public class MillerRabinTester
 		}
 		System.out.println(n);
 		return true;
-	}
-
-	//finds a^-1 mod n or ax congruent to 1 mod n
-	/*boolean isGcdOne(BigInteger a, BigInteger n)
-	{
-		//These arrays store the values of each step of the euclidean algorithm as a 4-tuple
-		//this allows us to recover them when we want to find the value X that multiplies to 1 mod n
-		/*
-		 * For example let's say we had gcd(6,17) then origNums[0] = 17 nums[0] = 6 factors[0] = 2 and remainders[0] = 5
-		 * and follow this until our remainders[i] is 1
-		 
-		ArrayList<BigInteger> nums = new ArrayList<BigInteger>();
-		ArrayList<BigInteger> origNums = new ArrayList<BigInteger>();
-		ArrayList<BigInteger> factors = new ArrayList<BigInteger>();
-		ArrayList<BigInteger> remainders = new ArrayList<BigInteger>();
-		//the value that we start at 
-		BigInteger valueToBreakUp = n;
-		//see how many times this value fits into "valueToBreakUp"
-		BigInteger rightVal = a;
-		//how many times rightVal fits into valueToBreakUp
-		BigInteger factor = n.divide(a);
-		//remainder of the division
-		BigInteger remainder = n.mod(a);
-		//used to count how many steps it took to find the gcd of the 2 numbers
-		BigInteger i = BigInteger.ONE;
-		//later becomes equal to the amount of steps we took and its used in order to find the inverse
-		BigInteger lastStep = BigInteger.ZERO;
-		//store our 4 tuple for a given step where origNums[i] = nums[i] * factors[i] + remainders[i]
-		origNums.add(valueToBreakUp);
-		nums.add(rightVal);
-		factors.add(factor);
-		remainders.add(remainder);
-
-		//print the tuple to see the whole algorithm
-		//printf("%lf = %lf * %lf + %lf\n", valueToBreakUp, rightVal, factor, remainder);
-		
-		//now iterate backwards to find all the equivalences such that origNums[i] - nums[i] * factors[i] = remainders[i]
-		while (remainder.compareTo(BigInteger.ONE) > 0 && i.compareTo(n) == -1)
-		{
-			valueToBreakUp = rightVal;
-			rightVal = remainder;
-			factor = valueToBreakUp.divide(rightVal).subtract(BigInteger.ONE);
-			remainder = valueToBreakUp.mod(rightVal);
-			//printf("%lf = %lf * %lf + %lf\n", valueToBreakUp, rightVal, factor, remainder);
-			origNums.add(valueToBreakUp);
-			nums.add(rightVal);
-			factors.add(factor);
-			remainders.add(remainder);
-			//printf("%lf + %lf * %lf = %lf\n", valueToBreakUp, rightVal, -factor, remainder);
-			i.add(BigInteger.ONE);
-		}
-		lastStep = i;
-		i = BigInteger.ZERO;
-
-		//these variables are used to store all the values of a tuple and do the calculations to transform them over 
-		//to the next step while mantaining the same structure of k1 * some factor + k2 * some factor = 1 
-		if (lastStep > 1)
-		{
-
-			double frontFactor = 1.0;
-			double backFactor = 0.0;
-			if (factors)
-				backFactor = -factors[lastStep - 1];
-			double frontNum = 0.0;
-			if (origNums)
-				frontNum = origNums[lastStep - 1];
-			double backNum = 0.0;
-			if (nums)
-				backNum = nums[lastStep - 1];
-			double congruenceRemainder = 1.0;
-			if (remainders)
-				congruenceRemainder = remainders[lastStep - 1];
-			//printf("(%lf) %lf + %lf (%lf) = %lf\n", frontFactor, frontNum, backNum, backFactor, congruenceRemainder);
-			//do this until we have reached the last of our tuples and we have n * some factors + a * some factor = 1 mod n
-			while (lastStep - 1 > 0)
-			{
-				//the process will basically alternate based on which of the 2 numbers is smaller, first the right will be smaller so go into this step
-				//then the left will be smaller and so we will use the "else" part of this loop, this method works only if the gcd of the numbers is 1 
-				if ((lastStep - 1) % 2 == 0)
-				{
-					frontFactor += frontFactor * -backFactor;
-					backNum = origNums[lastStep - 2];
-					backFactor = -factors[lastStep - 2];
-					//printf("(%lf) %lf + %lf (%lf) = %lf\n", frontFactor, frontNum, backNum, backFactor, congruenceRemainder);
-				}
-				else
-				{
-					if (factors)
-						backFactor = frontFactor * -factors[lastStep - 2] + backFactor;
-					if (nums)
-						backNum = nums[lastStep - 2];
-					if (origNums)
-						frontNum = origNums[lastStep - 2];
-					//printf("(%lf) %lf + %lf (%lf) = %lf\n", frontFactor, frontNum, backNum, backFactor, congruenceRemainder);
-				}
-				lastStep--;
-			}
-
-			//printf("%lf\n", -backFactor);
-			//since we are working with powers of the inverse when using 
-			//Shanks' algorithm, we rather have a positive number for the inverse
-			if (-backFactor < 0)
-				return -backFactor + n;
-			return -backFactor;
-		}
-		return factor;
-	}*/
+	}	
 	
-    public static BigInteger gcd(BigInteger a, BigInteger b)
-    {
-        // if b=0, a is the GCD
-        if (b.equals(BigInteger.ZERO))
-            return a;
+    	public static BigInteger gcd(BigInteger a, BigInteger b)
+    	{
+        	// if b=0, a is the GCD
+        	if (b.equals(BigInteger.ZERO))
+            		return a;
  
-        // call the gcd() method recursively by
-        // replacing a with b and b with
-        // modulus(a,b) as long as b != 0
-        else
-            return gcd(b, a.mod(b));
-    }
+        	// call the gcd() method recursively by
+        	// replacing a with b and b with
+        	// modulus(a,b) as long as b != 0
+       		else
+            		return gcd(b, a.mod(b));
+    	}
 	
 	public static ArrayList<BigInteger> pollardRho(BigInteger n)
 	{
