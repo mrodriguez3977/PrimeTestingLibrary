@@ -23,13 +23,6 @@ public class MillerRabinTester
 		//System.out.println((new BigInteger("340282366920938463463374607431768211457").divide(new BigInteger("59649589127497217"))));
 	}
 
-	public static BigInteger[] hasLargePrimeFactors(BigInteger p)
-	{
-		BigInteger[] arr = {BigInteger.valueOf(0),BigInteger.valueOf(0)};
-
-		return arr;
-	}
-
 	public static ArrayList<BigInteger> dumbFactoring(BigInteger x)
 	{
 		ArrayList<BigInteger> list = new ArrayList<BigInteger>();
